@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Convert a number into words</title>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="card">
+            <form class="converter-form">
+                <label for="numberInput">Number to convert:</label>
+                <input type="text" id="number-input" />
+                <button type="submit">Convert</button>
+            </form>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script src="numbers-to-letters.js"></script>
 </body>
-<script src="./numbers-to-letters.js" defer></script>
 </html>
