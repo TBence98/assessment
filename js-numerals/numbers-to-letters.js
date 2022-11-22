@@ -1,4 +1,4 @@
-function numbersToLetters(number) {
+export default function numbersToLetters(number) {
     const smallNumbers = [
         "zero",
         "one",
@@ -123,5 +123,3 @@ function numbersToLetters(number) {
 
     return combined;
 }
-
-console.log(numbersToLetters(1256432));
