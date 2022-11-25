@@ -7,11 +7,11 @@ const submitHandler = (event) => {
     const numberEl = document.getElementById("number-input");
     const resultEl = document.getElementById("result");
     const numberToConvert = +numberEl.value;
-    // Very basic validation, should be improved later
-    if (numberToConvert) {
+
+    try {
         resultEl.innerText = numbersToLetters(numberToConvert);
-    } else {
-        resultEl.innerText = "Input should only contain numbers";
+    } catch (e) {
+        resultEl.innerText = e.message;
     }
 };
 

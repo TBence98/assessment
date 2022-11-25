@@ -1,4 +1,12 @@
 export default function numbersToLetters(number) {
+    // If the number argument has a string type it tries to convert it to number
+    const numberToConvert = Math.floor(+number);
+
+    // Checks that a given value is a number, and the number is neither positive Infinity, negative Infinity, nor NaN
+    if (!Number.isFinite(numberToConvert)) {
+        throw new Error("Input has to be a number!");
+    }
+
     const smallNumbers = [
         "zero",
         "one",
@@ -38,7 +46,7 @@ export default function numbersToLetters(number) {
     const scaleNumbers = ["", "thousand", "million", "billion"];
 
     // Handle zero
-    if (number === 0) {
+    if (numberToConvert === 0) {
         return smallNumbers[0];
     }
 
@@ -46,7 +54,7 @@ export default function numbersToLetters(number) {
     const digitGroups = [];
 
     // Ensure a positive number to extract from
-    let positive = Math.abs(number);
+    let positive = Math.abs(numberToConvert);
 
     // Extract the three-digit groups
     for (let i = 0; i < 4; i++) {
@@ -117,7 +125,7 @@ export default function numbersToLetters(number) {
     }
 
     // Handle negatives
-    if (number < 0) {
+    if (numberToConvert < 0) {
         combined = "negative " + combined;
     }
 
