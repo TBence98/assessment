@@ -1,4 +1,5 @@
 import numbersToLetters from "./numbers-to-letters";
+import { convertToBritishEnglish } from "./numbers-to-letters";
 
 function dictionaryTest(arr, expect) {
     for (let i = 0; i < arr.length; i = i + 2) {
@@ -141,5 +142,38 @@ describe("numbers-to-letters.js", () => {
         ];
 
         dictionaryTest(testCases, expect);
+    });
+});
+
+describe("convertToBritishEnglish ", () => {
+    test("converts numbers between 1000 and 2000", () => {
+        expect(convertToBritishEnglish(1001)).toBe("ten hundred and one");
+        expect(convertToBritishEnglish(1234)).toBe(
+            "twelve hundred and thirty-four"
+        );
+        expect(convertToBritishEnglish(1678)).toBe(
+            "sixteen hundred and seventy-eight"
+        );
+        expect(convertToBritishEnglish(1999)).toBe(
+            "nineteen hundred and ninety-nine"
+        );
+    });
+
+    test("throws an error if the input is not a number", () => {
+        expect(() => convertToBritishEnglish("abc")).toThrow(
+            "Input has to be a number!"
+        );
+        expect(() => convertToBritishEnglish(Infinity)).toThrow(
+            "Input has to be a number!"
+        );
+    });
+
+    test("throws a RangeError if the input is not within the specified range", () => {
+        expect(() => convertToBritishEnglish(999)).toThrow(
+            "Argument must be a number between 1000 and 2000 exclusive, but received 999"
+        );
+        expect(() => convertToBritishEnglish(2001)).toThrow(
+            "Argument must be a number between 1000 and 2000 exclusive, but received 2001"
+        );
     });
 });
