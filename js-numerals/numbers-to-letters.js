@@ -1,3 +1,53 @@
+const smallNumbers = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+];
+
+const tensGroup = [
+    "",
+    "",
+    "twenty",
+    "thirty",
+    "forty",
+    "fifty",
+    "sixty",
+    "seventy",
+    "eighty",
+    "ninety",
+];
+
+function createTensString(tensUnits, tens, units) {
+    let tenStr = "";
+    if (tens >= 2) {
+        tenStr += tensGroup[tens];
+        if (units !== 0) {
+            tenStr += "-" + smallNumbers[units];
+        }
+    } else if (tensUnits !== 0) {
+        tenStr += smallNumbers[tensUnits];
+    }
+
+    return tenStr;
+}
+
 export function convertToBritishEnglish(number) {
     // If the number argument has a string type it tries to convert it to number
     let numberToConvert = Math.floor(+number);
@@ -14,42 +64,6 @@ export function convertToBritishEnglish(number) {
         );
     }
 
-    const tensGroup = [
-        "",
-        "",
-        "twenty",
-        "thirty",
-        "forty",
-        "fifty",
-        "sixty",
-        "seventy",
-        "eighty",
-        "ninety",
-    ];
-
-    const smallNumbers = [
-        "zero",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen",
-    ];
-
     const hundreds = Math.floor(numberToConvert / 100);
     const tensUnits = numberToConvert % 100;
     const tens = Math.floor(tensUnits / 10);
@@ -58,14 +72,7 @@ export function convertToBritishEnglish(number) {
     //build the string
 
     let combined = smallNumbers[hundreds] + " hundred and ";
-    if (tens >= 2) {
-        combined += tensGroup[tens];
-        if (units !== 0) {
-            combined += "-" + smallNumbers[units];
-        }
-    } else if (tensUnits !== 0) {
-        combined += smallNumbers[tensUnits];
-    }
+    combined += createTensString(tensUnits, tens, units);
 
     return combined;
 }
@@ -78,42 +85,6 @@ export default function numbersToLetters(number) {
     if (!Number.isFinite(numberToConvert)) {
         throw new Error("Input has to be a number!");
     }
-
-    const smallNumbers = [
-        "zero",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen",
-    ];
-
-    const tensGroup = [
-        "",
-        "",
-        "twenty",
-        "thirty",
-        "forty",
-        "fifty",
-        "sixty",
-        "seventy",
-        "eighty",
-        "ninety",
-    ];
 
     const scaleNumbers = ["", "thousand", "million", "billion"];
 
@@ -161,14 +132,7 @@ export default function numbersToLetters(number) {
         const units = tensUnits % 10;
 
         // Handle tens
-        if (tens >= 2) {
-            groupText += tensGroup[tens];
-            if (units !== 0) {
-                groupText += "-" + smallNumbers[units];
-            }
-        } else if (tensUnits !== 0) {
-            groupText += smallNumbers[tensUnits];
-        }
+        groupText += createTensString(tensUnits, tens, units);
 
         return groupText;
     }
