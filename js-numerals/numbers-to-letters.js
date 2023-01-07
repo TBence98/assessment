@@ -1,3 +1,75 @@
+export function convertToBritishEnglish(number) {
+    // If the number argument has a string type it tries to convert it to number
+    let numberToConvert = Math.floor(+number);
+
+    // Checks that a given value is a number, and the number is neither positive Infinity, negative Infinity, nor NaN
+    if (!Number.isFinite(numberToConvert)) {
+        throw new Error("Input has to be a number!");
+    }
+
+    if (numberToConvert <= 1000 || numberToConvert >= 2000) {
+        throw new RangeError(
+            "Argument must be a number between 1000 and 2000 exclusive, but received " +
+                numberToConvert
+        );
+    }
+
+    const tensGroup = [
+        "",
+        "",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "sixty",
+        "seventy",
+        "eighty",
+        "ninety",
+    ];
+
+    const smallNumbers = [
+        "zero",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "fifteen",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen",
+    ];
+
+    const hundreds = Math.floor(numberToConvert / 100);
+    const tensUnits = numberToConvert % 100;
+    const tens = Math.floor(tensUnits / 10);
+    const units = tensUnits % 10;
+
+    //build the string
+
+    let combined = smallNumbers[hundreds] + " hundred and ";
+    if (tens >= 2) {
+        combined += tensGroup[tens];
+        if (units !== 0) {
+            combined += "-" + smallNumbers[units];
+        }
+    } else if (tensUnits !== 0) {
+        combined += smallNumbers[tensUnits];
+    }
+
+    return combined;
+}
+
 export default function numbersToLetters(number) {
     // If the number argument has a string type it tries to convert it to number
     const numberToConvert = Math.floor(+number);
