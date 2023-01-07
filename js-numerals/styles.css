@@ -22,6 +22,7 @@ button {
     border: none;
     border-radius: 3px;
     font-size: .8rem;
+    margin-bottom: .5rem;
 }
 
 .container {
@@ -35,7 +36,7 @@ button {
     border: 1px solid gray;
     padding: 1rem;
     width: 50rem;
-    height: 10rem;
+    height: 11rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -43,4 +44,10 @@ button {
     margin: .5rem .5rem .5rem 0;
     padding: .4rem 0;
     font-size: .8rem;
+}
+
+.british_action_container label {
+    font-size: .8rem;
+    display: inline-block;
+    margin-bottom: .5rem;    
 }
