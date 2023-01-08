@@ -65,14 +65,17 @@ export function convertToBritishEnglish(number) {
     }
 
     const hundreds = Math.floor(numberToConvert / 100);
+    200;
     const tensUnits = numberToConvert % 100;
     const tens = Math.floor(tensUnits / 10);
     const units = tensUnits % 10;
 
     //build the string
 
-    let combined = smallNumbers[hundreds] + " hundred and ";
-    combined += createTensString(tensUnits, tens, units);
+    let combined = smallNumbers[hundreds] + " hundred";
+    if (tensUnits) {
+        combined += " and " + createTensString(tensUnits, tens, units);
+    }
 
     return combined;
 }
